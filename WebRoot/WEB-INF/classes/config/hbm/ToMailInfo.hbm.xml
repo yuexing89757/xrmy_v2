@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.pzoom.ads.platform.mail.model">
+	
+	<class name="ToMailInfo" table="tomailinfo">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="sender"/>
+		<property name="receiver"/>
+		<property name="title"/>
+		<property name="mailType">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.pzoom.ads.platform.mail.type.MailType</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		<property name="mailContent"/>
+		<property name="attachPath"/>
+		<property name="attachName"/>
+		<property name="attachDescription"/>
+		<property name="planTime"/>
+		<property name="sendTime"/>
+		<property name="copySend"/>
+		<property name="blindSend"/>
+	</class>
+</hibernate-mapping>

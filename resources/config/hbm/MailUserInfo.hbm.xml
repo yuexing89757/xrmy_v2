@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.pzoom.ads.platform.mail.model">
+	
+	<class name="MailUserInfo" table="mailuserInfo">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native"/>
+		 </id> 
+		<property name="emailAddress"></property>
+		<property name="userName"/>
+		<property name="password" not-null="true"/>
+		<property name="state">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.pzoom.ads.platform.mail.type.MailState</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		<property name="classify"/>
+		<property name="smtpUserName" />
+		<property name="userStatus" />
+		<property name="platformName"/>
+	</class>
+</hibernate-mapping>

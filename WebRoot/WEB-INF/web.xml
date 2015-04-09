@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>ads-backend</display-name>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<!--
+		<filter> <filter-name>AuthFilter</filter-name>
+		<filter-class>com.pzoom.ads.platform.backend.servlet.AuthFilter</filter-class>
+		</filter> <filter-mapping> <filter-name>AuthFilter</filter-name>
+		<url-pattern>/api/*</url-pattern> </filter-mapping>
+	-->
+
+	<!--  Listeners -->
+	<listener>
+		<listener-class>com.pzoom.ads.platform.backend.servlet.ShutdownProcessor</listener-class>
+	</listener>
+
+	<servlet>
+		<description>Platform StartUp Servlet</description>
+		<display-name>StartUp Servlet</display-name>
+		<servlet-name>StartupServlet</servlet-name>
+		<servlet-class>com.pzoom.ads.platform.backend.servlet.StartupServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StartupServlet</servlet-name>
+		<url-pattern>/StartupServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>WebAPI Servlet</display-name>
+		<servlet-name>WebApiServlet</servlet-name>
+		<servlet-class>com.pzoom.ads.platform.backend.servlet.ApiServlet</servlet-class>
+		<init-param>
+			<description>url pattern prefix</description>
+			<param-name>path</param-name>
+			<param-value>/api</param-value>
+		</init-param>
+		
+		<init-param>
+			<description>api filter</description>
+			<param-name>filter</param-name>
+			<param-value>com.pzoom.ads.platform.backend.dao.config.HibernateSessionFilter</param-value>
+		</init-param>
+		
+		<init-param>
+			<description>encode</description>
+			<param-name>encode</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<description>webapi class path</description>
+			<param-name>classpath</param-name>
+			<param-value>com.pzoom.ads.email.api.EmailApi</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WebApiServlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+                                                                                                                                                                                                                                                                                                     </web-app>
